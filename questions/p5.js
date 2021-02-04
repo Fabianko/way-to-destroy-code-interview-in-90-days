@@ -60,7 +60,6 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  * @return {number}
  */
 var romanToInt = function(s) {
-    s = s.split("")
     let valid = {
         'M':1000,
         'D':500,
@@ -72,30 +71,19 @@ var romanToInt = function(s) {
     let resp = 0;   
     let i = 0;
     let j = 1;
-    while (i < s.length-1) {
-        if (j == s.length-1) {
-            console.log('aqui',valid[s[j]])
-            resp += valid[s[j]]
-        }
-        if (valid[s[i]] >= valid[s[j]]) {
-            console.log(valid[s[i]])
+    while (i < s.length) {
+        if (i == s.length-1 || valid[s[i]] >= valid[s[j]]) {
             resp += valid[s[i]]
-            console.log("if",resp)
             i++
             j++
         }
         else {
-            console.log(valid[s[j]] - valid[s[i]])
             resp = resp + (valid[s[j]] - valid[s[i]])
-            console.log("else",resp)
             i+=2
             j+=2
         }
-        
-        
     }
-    console.log(resp)
     return resp
 };
 
-console.log(romanToInt("MCMXCIV")===1994)
+console.log(romanToInt("III")===3)
