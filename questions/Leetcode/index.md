@@ -10,6 +10,7 @@ problem 6: Longest Common Prefix
 problem 7: Buddy String
 problem 8: Excel Sheet Column Title
 problem 9: Sqrt(x)
+problem 10: Valid Palindrome
 
 **MEDIUM**
 
