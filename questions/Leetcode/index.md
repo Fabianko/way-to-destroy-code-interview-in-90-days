@@ -11,7 +11,7 @@ problem 7: Buddy String
 problem 8: Excel Sheet Column Title
 problem 9: Sqrt(x)
 problem 10: Valid Palindrome
-
+problem 11: Reverse String
 **MEDIUM**
 
 **HARD**
