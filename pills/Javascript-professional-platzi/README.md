@@ -115,3 +115,35 @@ encapcular variables let dentro de una funcion y requiere funciones para acceder
 
 ![Image](https://i.imgur.com/cv31vhP.gif)
 ![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2013-827db342-25ad-49f7-b2d6-63ab86813f06.jpg)
+
+------
+## Event Loop 
+
+multihilos?
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2015-408394ea-0f0a-45eb-a925-13f29d040c81.jpg)
+
+
+------
+## Promesas
+
+![image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2015-d833beac-203a-42e0-8e33-325b97489ac2.jpg))
+
+----
+## Getters y Setters
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2016-46bfba9c-31c6-4b39-9104-1e0372fd50ef.jpg)
+
+-----
+## Proxy
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2017-fb04470d-a18a-4a0a-bf2b-c94464b53410.jpg)
+
+[distancia de levenshtein](https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js)
+
+----
+## Generators
+![image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2018-15804034-3196-4382-a0b0-c8f1ec6e1209.jpg)
+
+-----
+## Fetch - Como cancelar peticiones
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2019-451f0b1e-207a-473e-81c3-df604fe790f1.jpg)
