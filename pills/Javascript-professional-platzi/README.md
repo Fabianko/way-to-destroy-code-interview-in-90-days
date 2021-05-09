@@ -260,3 +260,31 @@ Es uno de los patrones más utilizados, algunos ejemplos típicos son:
 * Listeners en páginas web
 
 ![img](https://reactiveprogramming.io/books/patterns/img/patterns-articles/observer-sequence.png)
+
+### Caso de uso Redux
+
+* Una librería de manejo de estado.
+* Inicializas un store como un estado y un reducer.
+* Despachas acciones que modifican el estado.
+* El store notifica que el estado cambió.
+* Muy utilizada con React
+  
+#### EventEmitter
+Es una librería de Node.js que cumple con el patrón Observer. Cuenta con tres funciones: emitter.on (subscribe), emitter.off (unsubscribe) y emitter.emit (notify).
+
+----
+## Patron decorator y caso de uso
+
+* Aniade nuevas responsabilidades a un objeto de forma dinamica.
+* Nos permiten extender funcionalidad sin tener que usar subclases, cerrado para modificacion de la clase pero abierto para extenderlo
+
+Lodash
+![image](https://upload.wikimedia.org/wikipedia/commons/b/be/DecoradorConcretoF.jpg)
+
+SOLID: los 5 principios que te ayudarán a desarrollar software de calidad
+
+S – Single Responsibility Principle (SRP)
+O – Open/Closed Principle (OCP)
+L – Liskov Substitution Principle (LSP)
+I – Interface Segregation Principle (ISP)
+D – Dependency Inversion Principle (DIP)
