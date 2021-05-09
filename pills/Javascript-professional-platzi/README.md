@@ -2,6 +2,8 @@
 
 ## proyecto media player
 
+basado en curso de platzi y codigo fuente en [github sparragus](https://github.com/Sparragus/javascript-profesional)
+
 comando permite crear servidor con javascript
 
 > npm i -D live-server
@@ -56,3 +58,60 @@ button.onclick = () => toggle();
 ![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%201-1e9e7c09-3c54-43e9-86a5-b76594e48e3f.jpg)
 
 Script fetching es asincrono y se marfca como async
+
+script defer se ejecuta hasta el final del codigo
+
+-----
+## SCOPE
+
+Global scope -> windows.variable (var)
+fuction scope -> se crea una funcion que tiene un scope 
+block scope -> let opera sobre bloque
+module scope -> limita el alcanze al momento de importar need export and inport
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%208-e026649f-a267-499e-bbe3-fbb6dfcbf0c1.jpg)
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%202-096087b1-9317-4862-979d-8ca6efe55379.jpg)
+
+------
+## Clousers
+
+Restricciones entre una funcion y el codigo que se llama
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%203-3d4c9393-3cd3-4dc3-858d-cae6e524025d.jpg)
+
+https://static.platzi.com/media/public/uploads/el-primer-plugin_424bdd8b-ea1c-42dd-ba0e-227808aee9c0.zip
+
+
+
+encapcular variables let dentro de una funcion y requiere funciones para acceder.
+
+-----
+## THIS
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%205-a7e22a7f-d833-49a4-ae64-82d508b32703.jpg)
+
+-----
+## Los Metodos call, apply y bihd
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%206-86babd14-1542-4e04-aa44-2ada6a2a0fed.jpg)
+
+------
+## Prototype
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%208-5c8d63da-0488-4936-b9ae-c35476e2e55e.jpg)
+
+------
+## Herencia Prototipal
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2010-7ae67edd-6ac5-497f-9fd2-3a302861265c.jpg) 
+
+------
+## Parser y Abstract syntax tree
+
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2011-519320fe-4af8-4c3b-902c-c85fd7a1ada4.jpg)
+
+------
+## Como funciona el javaScript Engine
+
+![Image](https://i.imgur.com/cv31vhP.gif)
+![Image](https://static.platzi.com/media/user_upload/JS%20%E2%80%93%2013-827db342-25ad-49f7-b2d6-63ab86813f06.jpg)
