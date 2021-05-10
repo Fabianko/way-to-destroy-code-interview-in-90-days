@@ -1,5 +1,5 @@
 # curso de javascript profesional plazti
-
+[link resumen curso](https://augdiaugus.gitbook.io/recoleccion-de-notas-publicas/escuela-de-javascript/curso-profesional-de-javascript)
 ## proyecto media player
 
 basado en curso de platzi y codigo fuente en [github sparragus](https://github.com/Sparragus/javascript-profesional)

@@ -117,5 +117,11 @@ $ netstat -i
 
 comprimir con c y descomprimir con x en tar
 
+### buscar ruta de binarios de un ejecutable
+```bash
+$ which npm
+```
+
+
 
 
