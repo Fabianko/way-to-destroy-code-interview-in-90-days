@@ -115,4 +115,7 @@ $ traceroute www.google.com
 $ netstat -i 
 ```
 
+comprimir con c y descomprimir con x en tar
+
+
 
