@@ -1,4 +1,4 @@
-Problems solved of leetcode 2021
+# Problems solved of leetcode 2021
 
 **EASY**
 problem 1: two sum
@@ -13,6 +13,7 @@ problem 9: Sqrt(x)
 problem 10: Valid Palindrome
 problem 11: Reverse String
 problem 12: Maximum Depth of Binary Tree
+
 **MEDIUM**
 
 **HARD**
