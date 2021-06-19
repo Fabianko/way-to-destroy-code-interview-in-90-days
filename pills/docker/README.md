@@ -12,6 +12,16 @@ $ docker run hello-world
 $ docker images
 ```
 
+para eliminar imagen NOMBRE_IMAGEN
+```bash
+$ docker rmi NOMBRE_IMAGEN
+```
+
+para eliminar todas las imagenes
+```bash
+$ docker rmi $(docker images -aq) -f
+```
+
 Procesos ejecutando de docker
 ```bash
 $ docker ps -a
@@ -34,5 +44,10 @@ $ docker rm $(docker ps -aq) -f
 
 levantar nginx
 ```bash
-$ docker run -p 80:80 -d nginx
+$ docker run -p 80:80 -d --name server nginx
+```
+
+para jenkins [link](https://hub.docker.com/_/jenkins)
+```bash
+$ docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins
 ```
