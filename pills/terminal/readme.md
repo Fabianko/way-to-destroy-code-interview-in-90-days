@@ -3,9 +3,13 @@
 [linux file hierarchy](https://www.geeksforgeeks.org/linux-file-hierarchy-structure/)
 [comandos resumen platzi](https://static.platzi.com/media/public/uploads/command-line-cheat-sheet_f2552bde-3bb0-4b1c-a1a7-dbd40095fa4f.pdf)
 
-### Eviatar eliminar archivos sin confirmar
+### ejemplo de alis para evitar eliminar archivos sin confirmar
 ```bash
 $ alias rm = 'rm -i'
+```
+
+```bash
+alias ll="ls -al"
 ```
 
 ### mv no solo sirve para mover, tambien para cambiar nombre
