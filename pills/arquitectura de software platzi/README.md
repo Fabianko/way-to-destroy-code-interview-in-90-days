@@ -6,7 +6,7 @@
   ![mg](https://static.platzi.com/media/user_upload/2019-05-29_09h19_19-1aed2d0f-d161-45ea-b200-9d2da7290eb7.jpg)
 </details>
 
-## **Atributos de calidad**:
+## Modulo 1: **Atributos de calidad**
 
 
 :pill: [Atributos de calidad](http://wiki.uqbar.org/wiki/articles/atributos-de-calidad.html)
@@ -80,5 +80,14 @@ Se refiere a todas esas cosas que hacen que el sistema pueda cambiar, evoluciona
 - **Adaptabilidad** -> Analizamos que tanto depende nuestro sistema de un entorno especifico.
 - **Capacidad de instalación** -> ¿Cuantos pasos se tienen que realizar? ¿Que tan difícil son? requerimientos del entorno de despliegue
 - **Capacidad de remplazo** -> Entender cuales son los requerimientos que cumplen los sistemas actuales y como se puede aprovechar para remplazarlo objetivamente. (retrocompatibilidad)
-  
+
+<details>
+  <summary> Tensiones entre atributos de calidad</summary>
+
 ![imagen](https://static.platzi.com/media/user_upload/Matriz%20de%20Tensiones%20de%20Atributos%20de%20Calidad-c7a939b1-c3b9-44bd-b76c-67c75797ed00.jpg)
+</details>
+<details>
+  <summary>Resumen modulo 1</summary>
+
+![imagen](https://static.platzi.com/media/user_upload/Primer%20modulo-8a1902a2-4ffe-4333-b6ae-9c4907f67b89.jpg)
+</details>
