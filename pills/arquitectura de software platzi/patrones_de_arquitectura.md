@@ -113,3 +113,5 @@ Ejemplo 1: un MVC que se conecta aun balanceador de carga a distintas apis que p
 ---
 
 [Arquitecturas escalables](https://medium.com/@Talend/from-lambda-to-kappa-a-guide-on-real-time-big-data-architectures-fe63f3079d3e)
+
+[material compelemtnario clase platzi](https://docs.google.com/presentation/d/1maSgvM4mXn7bldGlYEBHnOC_Lm9PY9B7CnfKXvg_lmg/edit#slide=id.g3417d7aa7a_0_152)
