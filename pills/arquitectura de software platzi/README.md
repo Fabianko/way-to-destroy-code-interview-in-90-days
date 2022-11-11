@@ -14,4 +14,6 @@
 
 ## Modulo 4: [**Escenarios**](escenarios.md)
 
+## Modulo 5: [**Evaluación y evolución**](evaluacion_arquitecturas.md)
+
 ## Modulo 5: [**Modelar y documentar una Arquitectura**](modelar_y_documentar_arquitectura.md)
