@@ -10,6 +10,8 @@
 
 ## Modulo 2: [**Patrones de Arquitectura**](patrones_de_arquitectura.md)
 
-## Modulo 3: [**Diseño de una Arquitectura**](diseno_de_una_arquictectura.md)
+## Modulo 3: [**Tipos de conectores**](tipos_de_conectores.md)
 
-## Modulo 4: [**Modelar y documentar una Arquitectura**](modelar_y_documentar_arquitectura.md)
+## Modulo 4: [**Escenarios**](escenarios.md)
+
+## Modulo 5: [**Modelar y documentar una Arquitectura**](modelar_y_documentar_arquitectura.md)

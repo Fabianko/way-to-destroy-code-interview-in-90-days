@@ -1,68 +1,5 @@
-# Modulo 3: **Diseño de una Arquitectura**
 
-[<span style="color:green">link ppt clase](https://docs.google.com/presentation/d/1SrNVT_j8De1TipH8GgGt-aq8vctd55wyinuEEO--UcE/edit#slide=id.g3106cf4060_0_114)
-
-Primer paso para crear una arquitectura. **Pararse en hombros de gigantes** Aprovechar el conocimiento existente para nuestra solución
-
-- Productos “de la estantería”. Productos ya echos que resuelvan parte de nuestros problemas.
-- Frameworks y librerías. Ayuda a empezar/proponer desde una arquitectura más especifica
-- Arquitecturas especificas del dominio. Decisiones de diseño ya tomadas para ciertos dominios del problema.
-- Patrones de arquitectura. Empezar desde un punto más solido y restringir nuestro diseño a las partes importantes que quedan por resolver
-
-## Herramientas y partes de un diseño: Tipos de conectores
-
-![img](https://static.platzi.com/media/user_upload/AmanosdeGigantes-17032b80-6d43-4426-9b2d-4860c7e44374.jpg)
-
-**La arquitectura está separada en dos partes fundamentales**:
-- Componentes: Son partes de nuestro sistema que cumplen una función específica
-Estos mismos componentes “modulares” pueden estar formados por más componentes, ya bien objetos o capas, que actuan como subcomponentes en su interior.
-La comunicación existente entre ellos se lleva a cabo por medio de conectores.
-- Conectores: Estos no están asociados a un dominio específico y son independientes a la hora de su análisis, pudiendo un e-commerce o una red social el mismo tipo de conector.
-
-**Tipos de conectores**:
-
-- **Llamado a procedimiento**: Invocan de un componente a otro componente y esperan una respuesta.
-- **Enlace**: Vinculan fuertemente un componente a otro, incluso para la compilación. Visto en lenguajes compilados, y en componentes que forman parte de un monolito
-- **Evento**: Permiten a un componente notificar un evento (que algo sucedió), y a otros componentes escuchar y reaccionar ante un evento.
-- **Adaptador**: Ayudan a compatibilizar la interfaz de un componente con la de otro componente
-- **Acceso a datos**: Nos ayudan a acceder a recursos compartidos de datos, como APIs, sistemas de archivos y bases de datos. Compatibiliza la interfaz del dato con la interfaz que espera el componente que estamos usando.
-- **Flujo**: Permite la recolección de datos en un flujo de información continuo por parte de otro componente que tiene intereses en obtener varios o todos los datos del flujo.
-- **Arbitraje**: Coordinan los permisos de acceso a un recurso entre componentes y deciden quien se encarga de distribuir dichos comportamientos.
-<span style="color:red">Ej: Test A/B, teniendo varios componentes disponibles recibimos un pedido y se decide qué versión enviar para comparar diferentes atributos de calidad.
-- **Distribuidor**: Facilita la distribución de un mensaje a varios componentes a través de un solo conector.
-
-## 1 - Conectores: Llamado asincrónico / sincrónico. Modelo Cliente servidor
-- **Llamado asincrónico**
-Un componente llama a otro. pero no espera a que termine esta ejecución, sigue con su trabajo y en algún momento evaluara cual fue el resultado. Típico en sistemas desconectados.
-<span style="color:red">Ejemplo: promesas o futuros en JS
-- **Llamado sincrónico**
-El emisor envía un mensaje al receptor y no sigue ejecutando hasta que no reciba el resultado. <span style="color:red">Ejemplo:Típico en lenguajes orientado a objetos
-
-- **Cliente servidor**
-la comunicación va a ser siempre de cliente a servidor y el cliente va a esperar siempre la respuesta.
-
-## 2 - Conectores: Enrutador, difusión
-- **Enrutador**: Lo que va facilita es la conexión en un componente que emite un mensaje y un set específico de componentes que les interesa ese mensaje. Pero en realidad van a haber muchos componentes receptores y el enrutador va a saber cuáles les interesa ese mensaje. Es decir, va a tener la inteligencia suficiente para entender ese mensaje y a quien tiene que llegar. Puede ser a un solo componente de destino o a muchos.
-- **Difusión**: El conector de tipo difusión, es un conector que dado un mensaje de un emisor, lo difunde a muchos otros componentes interesados.
-
-Ejemplo: Si tenemos que analizar la diferencia entre el Enrutador y el Difusor, podemos poner un ejemplo: Twitter.
-<span style="color:red">Twitter: Tiene los dos casos para diferentes funcionalidades.
-
-- Si un usuario que seguimos, escribe un mensaje, hay un enrutador, que está decidiendo a qué base de datos redis va a llegar ese mensaje, donde cada base de datos es un componente que es la timeline de los usuarios que lo siguen.
-
--  Cada mensaje que se manda, que es público, se hace difusión de ese mensaje, y luego, varios componentes que están escuchando todos los mensajes públicos, van a tener la inteligencia para ver si ese mensaje le es importante o no a ese componente. 
-
-La diferencia está si el componente es inteligente y recibe todos los mensajes y luego decide (Difusión), o si el conector es inteligente y decide a quien tiene que mandar ese mensaje (Enrutador). 
-
-## 3 - Conectores: Pizarra, repositorio, colas, modelo PUBSUB
-
-- **Cola**. Necesitamos utilizarlo cuando tenemos un productor que tiene más velocidad que un consumidor, para conectarlos, necesitamos encolar el procesamiento de cada uno de esos mensajes, así el consumidor puede leerlos a medida que puede hacerlo.
-
-- **Repositorio / Pizarra**. Es un conector que está orientado a escribir o leer datos de un componente que funciona como base de datos. Estos conectores van a darle importancia a ese dato y a cuánto ese dato afecta a nuestra base de datos.
-
-- **Modelo Publicar / Suscribir**: PUBSUB. Permite mandar mensajes desde un componente que publique eventos a otro que se suscriba a esos eventos sin necesidad que esos componentes se conozcan entre sí. Esto lo logra a través de conectarse con el publicador y que este publicador le de los eventos, y luego conectarse con el suscritor y que el suscritor le comunique qué eventos le interesa. <span style="color:red">en sistemas distribuidos, Angular
-  
-## Escenarios y tácticas
+# Escenarios y tácticas
 - **Framework de diseño orientado a atributos** plantea una estructura de Escenarios y tácticas en donde cada escenario ayudará a conectar atributos con diferentes tácticas de implementación.
 
 - **La estructura básica** de todo escenario del framework en donde un escenario que va a estar asociado a un atributo de calidad especifico va a plantear <span style="color:red">**un estímulo**</span>, el cual va a tener que ver con algo que afecta directamente a este atributo de calidad y luego va a plantear diferentes tácticas <span style="color:red">**para controlar la respuesta**</span> a este estímulo, por último <span style="color:red">**la respuesta**</span> es lo que esperamos o nuestro caso de éxito como pudimos resolver este estimulo con la implementación de algunas de estas tácticas.
@@ -114,3 +51,69 @@ Familias de tácticas de mantenibilidad:
   - **Polimorfismos**. Un objeto pueda comportarse de forma diferente en base a su estado. A través del polimorfismo podemos postergar la forma en que se resuelve un problema dependiendo de qué instancia del objeto será. <span style="color:red">**POO: PD state**</span>
   - **Reemplazo de componentes**. Tener la capacidad de desplegar un componente y luego desplegar su reemplazo, o quizás otro componente que respete esa interfaz, y que todo el resto de nuestra aplicación no necesite cambiar. <span style="color:red">**Angular**</span>
   - **Adherir a protocolos**. Nos permite tener un protocolo claro entre dos módulos y no necesitar saber la instancia específica o el tipo específico de un módulo. <span style="color:red">**API→schemas**</span>
+
+## 3 - Escenarios: Eficiencia de ejecución
+
+En el caso de eficiencia de ejecución vamos a tener eventos ingresando a nuestro sistema como estímulo y luego vamos a trabajar sobre las tácticas para controlar esta eficiencia para que la respuesta sea dentro del tiempo esperado.
+
+- **Demanda de recursos**. Trata sobre cuándo entra un evento, cómo hacemos para que ese evento tenga los recursos disponibles y cuánto de esos recursos necesita.
+  - **Mejorar la eficiencia computacional**. Podemos analizar nuestros algoritmos y podemos analizar nuestro procedimiento para encontrar cuáles son los puntos en dónde no estamos siendo eficientes.
+  - **Reducir sobrecarga**. Habla sobre cuántos pasos o qué acciones estamos tomando para una misma tarea o responder a un mismo evento.
+  - **Manejar tasa de eventos**. Cuántos eventos vamos a emitir a un componente específico y si es necesario ser tan fino en estos eventos. Si podemos reducir esa tasa de eventos podemos optimizar esa comunicación.
+  - **Frecuencia de muestreo**. Si yo sí estoy recibiendo todo este stream, cómo puedo hacer para decidir procesar esos eventos en una forma grupal, entonces en lugar de hacer una tarea por evento puedo hacer una tarea cada cierta cantidad de tiempo y agrupar todos los eventos en una tarea única puedo hacer mejor uso de los recursos procesando una sola vez un grupo de eventos.
+  
+- **Gestión de recursos**. Cómo ponemos disponibles más o menos recursos y cómo hacemos para que estén cuándo se le necesitan.
+  - **Concurrencia**. Trabajamos sobre cómo paralelizar nuestro proceso para que se pueda responder en menor tiempo usando recursos de forma paralela o en menor tiempo.
+  - **Réplicas**. Cómo podemos duplicar el procesamiento o los datos para hacer más accesibles estos recursos a nuestro proceso.
+  - **Aumentar recursos**. El poder medir y decidir cuándo crecer la cantidad de recursos que tenemos disponibles.
+
+- **Arbitraje de recursos**. En caso de conflicto, en caso de haber múltiples eventos necesitando los mismos recursos cómo decidimos cuáles tienen prioridad.
+  - **Políticas de planificación de tareas**. Yo puedo decidir que cada recurso tiene que responder en el momento entonces tiene que tener un acceso sincrónico, un acceso prioritario a cada uno de esos recursos o puede postergar tareas y agendarlas para que se hagan en un momento futuro. Incluso puedo priorizar esos pedidos paralelos y decidir si un pedido es más importante que otro o el orden en que se van a resolver.
+  
+## 4 - Escenarios: Seguridad
+
+- **Detectar ataques**. Tratar de identificar que el estado actual de la aplicación tiene un atacante de por medio.
+  - **Detectores de intrusos**. Ayuda a tener diferentes implementaciones puestas en nuestra aplicación para saber cuándo se está utilizando de forma incorrecta.
+
+- **Recuperación de ataques**. Tratar de tener diferentes tácticas para poder volver a un estado consistente y saber cuáles fueron las acciones que el atacante tomó para poder evitarlas.
+  - **Restauración**. Cómo hacemos para tener por un lado un estado conocido que sabemos que es consistente o por otro lado diferentes estados que podemos comparr y saber si estamos en un estado consistente o no.
+    - **Disponibilidad** (escenarios)
+  - **Identificación**. Es importante para poder saber qué es lo que hizo el atacante.
+    - **Traza de auditoría**. Sepamos exactamente todos los pasos que dan nuestros usuarios como para que, cuándo detectamos al atacante, podamos volver a un estado conocido y luego ejecutar todas las acciones de nuestros usuarios ignorando lo que hizo el atacante. <span style="color:red">logs de auditoria
+
+- **Resistencia al ataque**. Va a tratar que el atacante no tenga éxito.
+  - **Autenticación**. Refiere a cómo sabemos que el usuario es quién dice ser.
+  - **Autorización**. Trata no solamente de saber quién es esa persona sino saber qué puede o no hacer esa persona. <span style="color:red">(Roles x usuario)
+  - **Confidencialidad de datos**. Refiere a como garantizaxmos que el dato lo puede ver quien deberia verlo. <span style="color:red">(encriptación)
+  - **Limitar Exposición**. vamos a buscar que si un atacante entra por algun lugar, no va a poder acceder a la información mas sensible, <span style="color:red"> separar datos de usuarios
+  - **Integridad**. trata de como garantizar que el mensaje que nos estan enviando es integro, esta compuesto como el emisor lo configuro. algoritmos de hash para recibir lo que se envió. <span style="color:red">(JWT)
+  - **Limitar acceso**. identificar los puertos en donde alguien puede acceder y buscar las restricciones.<span style="color:red"> ocultar puerto ssh
+  
+## 5 - Escenarios: Capacidad de prueba
+
+El estímulo es la capacidad de probar que esta funcionalidad es la correcta y luego el resultado esperado será detectar fallas para repararlas y volver a iterar.
+
+- **Entradas y salidas**. Cómo hacer para dado estímulo de pruebas evaluar esa salida.
+  - **Captura y reproducción**. Capturar la comunicación, es decir saber qué es lo que le están diciendo a la aplicación y luego usar esa misma comunicación en un test de prueba. <span style="color:red">(vsr, Cypress.io)
+  - **Separar interfaz de implementación**. Cuando separamos la interfaz de la implementación podemos hacer pruebas remplazando la implementación con una implementación controlada y evaluar si esa implementación está recibiendo los mensajes que deseamos que reciba. [<span style="color:red">Test double](https://en.wikipedia.org/wiki/Test_double)
+  - **Acceso exclusivo para pruebas**. Cómo hacer cuándo tenemos una funcionalidad y hay cierta parte que no podemos controlar desde fuera de la aplicación. Entonces si queremos hacer una prueba desde fuera de la aplicación podemos darnos acceso a cierta parte como contexto de testing. <span style="color:red">STACKS with microservices.
+
+- **Monitoreo Interno**. Va a tener en cuenta la ejecución de nuestra aplicación y cómo probar que se está ejecutando correctamente.
+  - **Monitoreo incorporado**. La aplicación sea consciente de los recursos que está consumiendo, los pedidos que recibe e incluso que los pueda guardar y de cualquier información que nos sirva para después entender y hacer debugging de qué es lo que pasó cuándo pasó un error.<span style="color:red">aplicaciones de escritorio
+
+## 6 - Escenarios: Usabilidad
+
+Va a tener como estímulo el pedido de usuario y luego vamos a ver con qué tácticas contamos para a través del control de la usabilidad poder brindar información y asistencia al usuario.
+
+- **Separar la interfaz de usuario**. Que cualquier otro artefacto que haya dentro de nuestra aplicación, cualquier módulo que hagamos, esté separado de la interfaz de usuario. De esta forma podemos iterar y podemos revisar la cantidad de veces que sea necesario la interfaz de usuario para poder trabajar constantemente sobre la usabilidad de lo que estamos proponiendo.
+  - **Mantenibilidad- Coherencia Semántica** cualquier otroartefacto este separado de la interfaz de usuario, para poder revisar y manejar la usabilidad en el tiempo. y esto puede trabajarse independientemente de la lógica de negocios o de la estructura de datos.
+- **Iniciativas del Usuario** como hacer para que el usuario tenga mayor control sobre las acciones.
+  - **Cancelar**. Permite a un usuario dada una acción previa el poder arrepentirse.
+  - **Deshacer**. Volver para atrás al estado anterior le permite al usuario re evaluar lo que va a hacer y luego tomar mejores decisiones.
+  - **Agregación**. Tiene que ver con entender cuándo las funcionalidades que estamos presentando al usuario en realidad deberían estar agrupadas.
+  - **Múltiples vistas**. Refiere a cómo hacemos para que el usuario tenga solamente la información necesaria para poder hacer sus acciones de la forma más eficiente posible.
+
+- **Iniciativas del Sistema**. La idea es poder entender del lado del sistema cuál es el estado actual de la aplicación.
+  - **Modelo del usuario**. Esto significa que del lado del sistema entendamos cuál es el estado actual del usuario para poder empezar una iniciativa, es decir, enviar un mensaje del lado del sistema y que tenga sentido con lo que está viendo. por ejemplo seria raro ver una alerta a un input si aun no llena un formulario.
+  - **Modelo del sistema**. Implica qué sabemos de nosotros mismos, qué sabemos cómo aplicación de lo que está pasando en este momento. Ejemplo: si el usuario tiene un proceso en ejecución que este en conocimiento si paso algo o fue exitoso.
+  - **Modelo de la tarea**. Tiene que ver con cuánto entiende el sistema de la tarea que está queriendo realizando el usuario. Ejemplo: si la tarea es una compra, si algun dato falta o requiere asistencia, puede apoyar al usuario para realizar la tarea.
