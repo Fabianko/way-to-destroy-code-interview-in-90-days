@@ -21,7 +21,7 @@ function findNaughtyStep(original, modified) {
     return ''; // No hay cambios
   }
 
-  function findNaughtyStep(original, modified) {
+  function findNaughtyStep2(original, modified) {
     for (let i = 0; i < Math.max(original.length, modified.length); i++) {
       if (original[i] !== modified[i]) {
         return original[i + 1] === modified[i] ? original[i] : modified[i];
