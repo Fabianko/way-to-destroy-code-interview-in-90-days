@@ -84,7 +84,6 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 });
  */
 
-
 const fs = require('fs');
 const path = require('path');
 
@@ -92,8 +91,26 @@ function sumGearRatios(schematic) {
   let sum = 0;
   const rows = schematic.trim().split("\n").map(row => row.split(''));
 
-  function isSymbol(char) {
-    return char && !char.match(/[0-9.]/);
+  function isPartNumberChar(char) {
+    return char && char.match(/[0-9]/);
+  }
+
+  function getPartNumberAt(x, y, dx, dy) {
+    let partNumber = '';
+    let nx = x;
+    let ny = y;
+    // Moverse en la dirección opuesta para encontrar el inicio del número
+    while (nx - dx >= 0 && nx - dx < rows.length && ny - dy >= 0 && ny - dy < rows[nx - dx].length && isPartNumberChar(rows[nx - dx][ny - dy])) {
+      nx -= dx;
+      ny -= dy;
+    }
+    // Recoger el número completo
+    while (nx >= 0 && nx < rows.length && ny >= 0 && ny < rows[nx].length && isPartNumberChar(rows[nx][ny])) {
+      partNumber += rows[nx][ny];
+      nx += dx;
+      ny += dy;
+    }
+    return partNumber ? parseInt(partNumber, 10) : null;
   }
 
   function getAdjacentPartNumbers(x, y) {
@@ -103,21 +120,14 @@ function sumGearRatios(schematic) {
       [-1, -1], [-1, 1], // diagonal arriba
       [1, -1], [1, 1],  // diagonal abajo
     ];
-    let partNumbers = [];
-    for (const [dx, dy] of directions) {
-      let nx = x + dx;
-      let ny = y + dy;
-      let numberStr = '';
-      while (nx >= 0 && nx < rows.length && ny >= 0 && ny < rows[nx].length && rows[nx][ny].match(/[0-9]/)) {
-        numberStr += rows[nx][ny];
-        nx += dx;
-        ny += dy;
+    let partNumbers = new Set();
+    directions.forEach(([dx, dy]) => {
+      let partNumber = getPartNumberAt(x + dx, y + dy, dx, dy);
+      if (partNumber !== null) {
+        partNumbers.add(partNumber);
       }
-      if (numberStr) {
-        partNumbers.push(parseInt(numberStr, 10));
-      }
-    }
-    return partNumbers;
+    });
+    return Array.from(partNumbers);
   }
 
   for (let x = 0; x < rows.length; x++) {
@@ -142,3 +152,4 @@ fs.readFile(filePath, 'utf8', (err, data) => {
   }
   console.log(sumGearRatios(data));
 });
+
