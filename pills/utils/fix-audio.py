@@ -20,6 +20,8 @@
 # con la velocidad ajustada de forma gradual.
 
 from pydub import AudioSegment
+from pydub.playback import play
+from concurrent.futures import ProcessPoolExecutor
 
 def load_audio(file_path):
     """
@@ -27,18 +29,46 @@ def load_audio(file_path):
     """
     return AudioSegment.from_file(file_path)
 
-def adjust_speed(audio, start_speed, end_speed):
+def adjust_segment_speed(segment, original_frame_rate, speed):
+    """
+    Ajusta la velocidad de un segmento de audio cambiando su tasa de muestreo.
+    """
+    new_frame_rate = int(original_frame_rate * speed)
+    return segment.set_frame_rate(new_frame_rate)
+
+def adjust_speed_parallel(audio, start_speed, end_speed, num_processes=8):
     """
     Ajusta la velocidad de un objeto AudioSegment de forma gradual
-    desde start_speed hasta end_speed y devuelve el audio ajustado.
+    desde start_speed hasta end_speed utilizando procesos paralelos.
     """
     length = len(audio)
-    adjusted_audio = AudioSegment.empty()
-    for i in range(length):
-        speed = start_speed + (end_speed - start_speed) * (i / length)
-        segment = audio[i:i + 1].speedup(playback_speed=speed)
-        adjusted_audio += segment
+    segment_duration = max(1, length // (num_processes * 10))  # Ajusta esto según tus necesidades
+    segments = [audio[i:i + segment_duration] for i in range(0, length, segment_duration)]
+    num_segments = len(segments)
+    progress_interval = num_segments // 20  # 5% de los segmentos
+
+    with ProcessPoolExecutor(max_workers=num_processes) as executor:
+        futures = []
+        for i, segment in enumerate(segments):
+            # Calcular la velocidad promedio para este segmento
+            start_index = i * segment_duration
+            end_index = start_index + segment_duration
+            start_speed_segment = start_speed + (end_speed - start_speed) * (start_index / length)
+            end_speed_segment = start_speed + (end_speed - start_speed) * (end_index / length)
+            avg_speed = (start_speed_segment + end_speed_segment) / 2
+            # Programar la tarea de ajuste de velocidad
+            futures.append(executor.submit(adjust_segment_speed, segment, segment.frame_rate, avg_speed))
+
+        # Recopilar los resultados y mostrar el progreso
+        adjusted_audio = AudioSegment.empty()
+        for i, future in enumerate(futures):
+            adjusted_audio += future.result()
+            if (i + 1) % progress_interval == 0 or i == num_segments - 1:
+                progress_percentage = 100 * (i + 1) / num_segments
+                print(f"Progreso: {progress_percentage:.2f}% completado")
+
     return adjusted_audio
+
 
 def split_audio(audio, split_point):
     """
@@ -58,16 +88,16 @@ def save_audio(audio, file_path):
 # Ejemplo de uso
 if __name__ == "__main__":
     # Cargar el archivo original
-    original_audio = load_audio("tu_archivo.mp3")
+    original_audio = load_audio("11-1.mp3")
 
     # Ajustar la velocidad de forma gradual
-    adjusted_audio = adjust_speed(original_audio, start_speed=0.6, end_speed=2.0)
-
+    adjusted_audio = adjust_speed_parallel(original_audio, start_speed=0.1, end_speed=1.8, num_processes=8)
     # Guardar el audio ajustado
-    save_audio(adjusted_audio, "ajustado.mp3")
+    save_audio(adjusted_audio, "11-1-ajustado.mp3")
 
     # Cortar el audio original en dos desde el segundo 30 (30000 milisegundos)
-    # part1, part2 = split_audio(original_audio, 30000)
+    tiempo_corte = 1000*60*20
+    #part1, part2 = split_audio(original_audio, tiempo_corte)
 
     # Guardar las dos partes
     #save_audio(part1, "parte1.mp3")
